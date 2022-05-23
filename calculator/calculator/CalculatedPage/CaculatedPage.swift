@@ -13,7 +13,8 @@ struct CaculatedPage: View {
     var body: some View {
         VStack(){
             HStack{
-                Text(CalculatorDataSheet.viewNumS)
+//                Text(CalculatorDataSheet.isCalculation ?  CalculatorDataSheet.viewNumS2+" V2 "+CalculatorDataSheet.viewNumS : CalculatorDataSheet.viewNumS+" V1 "+CalculatorDataSheet.viewNumS2)
+                Text(CalculatorDataSheet.isCalculation ?  CalculatorDataSheet.viewNumS2: CalculatorDataSheet.viewNumS)
                     .foregroundColor(.white)
                                   }
             .frame(width : UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height / 3, alignment: .bottomTrailing)
