@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct CaculatedPage: View {
+struct CalculatedPage: View {
    
-    @EnvironmentObject var CalculatorDataSheet : CalculatorDataSheet
+    @EnvironmentObject var CalculatorDataSheet: CalculatorDataSheet
     var body: some View {
         VStack(){
             HStack{
@@ -24,6 +24,6 @@ struct CaculatedPage: View {
 
 struct CaculatedPage_Previews: PreviewProvider {
     static var previews: some View {
-        CaculatedPage()
+        CalculatedPage()
     }
 }

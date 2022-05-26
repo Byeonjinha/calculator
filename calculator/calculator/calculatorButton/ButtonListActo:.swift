@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ButtonListActo_: View {
-    @EnvironmentObject var CalculatorDataSheet : CalculatorDataSheet
+    @EnvironmentObject var CalculatorDataSheet: CalculatorDataSheet
     var body: some View {
         HStack{
             Button(action:{

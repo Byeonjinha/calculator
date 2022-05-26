@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CalculatorDataSheet : ObservableObject{
+final class CalculatorDataSheet: ObservableObject{
     @Published var viewNumS : String = "0" {
         didSet {
             viewNumC = Array(viewNumS)
