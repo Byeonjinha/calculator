@@ -13,7 +13,7 @@ struct ContentView: View {
         Rectangle()
             VStack{
             
-                CaculatedPage()
+                CalculatedPage()
                 ButtonListActo_()
                 ButtonList7to_()
                 ButtonList4to_()
