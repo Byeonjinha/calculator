@@ -20,6 +20,7 @@
 		BA3FC33728378A1E00D3CC8E /* ButtonList7to*.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FC33628378A1E00D3CC8E /* ButtonList7to*.swift */; };
 		BA3FC33928378B0800D3CC8E /* ButtonListActo:.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FC33828378B0800D3CC8E /* ButtonListActo:.swift */; };
 		BA3FC33C28378EE900D3CC8E /* CaculatedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FC33B28378EE900D3CC8E /* CaculatedPage.swift */; };
+		BA55C59F283E699800F46146 /* calculator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA55C59E283E699800F46146 /* calculator2.swift */; };
 		BAE763AF283791AC003C30D3 /* CalculatorDataSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE763AE283791AC003C30D3 /* CalculatorDataSheet.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		BA3FC33628378A1E00D3CC8E /* ButtonList7to*.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonList7to*.swift"; sourceTree = "<group>"; };
 		BA3FC33828378B0800D3CC8E /* ButtonListActo:.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonListActo:.swift"; sourceTree = "<group>"; };
 		BA3FC33B28378EE900D3CC8E /* CaculatedPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaculatedPage.swift; sourceTree = "<group>"; };
+		BA55C59E283E699800F46146 /* calculator2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculator2.swift; sourceTree = "<group>"; };
 		BAE763AE283791AC003C30D3 /* CalculatorDataSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorDataSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 			children = (
 				BA3FC32E283785AB00D3CC8E /* ButtonList0to=.swift */,
 				BA3FC3302837889E00D3CC8E /* ButtonList1to+.swift */,
+				BA55C59E283E699800F46146 /* calculator2.swift */,
 				BA3FC332283789F800D3CC8E /* ButtonList4to-.swift */,
 				BA3FC33628378A1E00D3CC8E /* ButtonList7to*.swift */,
 				BA3FC33828378B0800D3CC8E /* ButtonListActo:.swift */,
@@ -300,6 +303,7 @@
 				BA3FC333283789F800D3CC8E /* ButtonList4to-.swift in Sources */,
 				BA3FC32F283785AB00D3CC8E /* ButtonList0to=.swift in Sources */,
 				BA3FC30628377F9500D3CC8E /* ContentView.swift in Sources */,
+				BA55C59F283E699800F46146 /* calculator2.swift in Sources */,
 				BA3FC33928378B0800D3CC8E /* ButtonListActo:.swift in Sources */,
 				BA3FC3312837889E00D3CC8E /* ButtonList1to+.swift in Sources */,
 				BA3FC30428377F9500D3CC8E /* calculatorApp.swift in Sources */,

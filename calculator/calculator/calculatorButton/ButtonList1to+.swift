@@ -196,7 +196,24 @@ struct ButtonList1to_: View {
                     let numberFormatter = NumberFormatter()
                         numberFormatter.numberStyle = .decimal
                         numberFormatter.maximumFractionDigits = 9
-                    CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                    
+                    if CalculatorDataSheet.isCalculation && CalculatorDataSheet.isActCalculation == "plus"{
+                        
+                    }else {
+                        if CalculatorDataSheet.isActCalculation == "plus" {
+                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                        }
+                        else if CalculatorDataSheet.isActCalculation == "minus" {
+                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! - Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                        }
+                        else if CalculatorDataSheet.isActCalculation == "divide" {
+                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! / Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                        }
+                        else if CalculatorDataSheet.isActCalculation == "multiply" {
+                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                        }
+                    }
+                    
                     CalculatorDataSheet.viewNumS2 = CalculatorDataSheet.viewNumS
                     CalculatorDataSheet.isDivide = false
                     CalculatorDataSheet.isPlus = true

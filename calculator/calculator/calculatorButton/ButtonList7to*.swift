@@ -160,8 +160,8 @@ struct ButtonList7to_: View {
                         CalculatorDataSheet.isPlus = false
                         CalculatorDataSheet.isMinus = false
                         CalculatorDataSheet.isMultiply = false
-                        
                     }
+                    
                     else {   //첫 연산이 아닐 때
                         if CalculatorDataSheet.viewNumS2 == "0"{
                             CalculatorDataSheet.viewNumS2 = "9"
@@ -200,8 +200,24 @@ struct ButtonList7to_: View {
                         numberFormatter.numberStyle = .decimal
                         numberFormatter.maximumFractionDigits = 9
                     
-                    print(CalculatorDataSheet.isActCalculation,"multiply 눌림")
-                    CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                    
+                    if CalculatorDataSheet.isCalculation && CalculatorDataSheet.isActCalculation == "multiply" { // 실행된 변수를 만들어서 그 변수와 비교를 통해 막아야할 듯
+                        
+                    }else {
+                        if CalculatorDataSheet.isActCalculation == "plus" {
+                            CalculatorDataSheet.viewNumS = (numberFormatter.string(for:Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)!)
+                        }
+                        else if CalculatorDataSheet.isActCalculation == "minus" {
+                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! - Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                        }
+                        else if CalculatorDataSheet.isActCalculation == "divide" {
+                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! / Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                        }
+                        else if CalculatorDataSheet.isActCalculation == "multiply" {
+                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                        }
+                    }
+                    
                     CalculatorDataSheet.viewNumS2 = CalculatorDataSheet.viewNumS
                     CalculatorDataSheet.isDivide =  false
                     CalculatorDataSheet.isPlus = false
