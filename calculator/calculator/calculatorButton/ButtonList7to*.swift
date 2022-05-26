@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ButtonList7to_: View {
     @EnvironmentObject var CalculatorDataSheet: CalculatorDataSheet
+    
     var body: some View {
         HStack{
             Button(action:{
@@ -28,22 +29,22 @@ struct ButtonList7to_: View {
                 if !CalculatorDataSheet.isCalculation{  // 연산 중이 아닐 때
                     CalculatorDataSheet.isDivide = false
                     CalculatorDataSheet.isAC = true
-                    if CalculatorDataSheet.viewNumS == "0"{
+                    if CalculatorDataSheet.viewNum == "0"{
                         CalculatorDataSheet.isDivide = false
-                        CalculatorDataSheet.viewNumS = "7"
+                        CalculatorDataSheet.viewNum = "7"
                     }
                     else{
                         let numberFormatter = NumberFormatter()
                             numberFormatter.numberStyle = .decimal
                             numberFormatter.maximumFractionDigits = 9
-                        CalculatorDataSheet.viewNumS = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined() + "7"))!)
+                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined() + "7"))!)
                     }
                 }
                 else {  //연산 중 일 때
               
                     if !CalculatorDataSheet.isFirstCalculation {  // 첫 연산 일 때
                         CalculatorDataSheet.isFirstCalculation = true // 다음은 첫 연산이 아니라고 명시
-                        CalculatorDataSheet.viewNumS2 = "7"
+                        CalculatorDataSheet.viewNum2 = "7"
                         CalculatorDataSheet.isDivide = false
                         CalculatorDataSheet.isPlus = false
                         CalculatorDataSheet.isMinus = false
@@ -51,14 +52,14 @@ struct ButtonList7to_: View {
                         
                     }
                     else {   //첫 연산이 아닐 때
-                        if CalculatorDataSheet.viewNumS2 == "0"{
-                            CalculatorDataSheet.viewNumS2 = "7"
+                        if CalculatorDataSheet.viewNum2 == "0"{
+                            CalculatorDataSheet.viewNum2 = "7"
                         }
                         else{
                             let numberFormatter = NumberFormatter()
                                 numberFormatter.numberStyle = .decimal
                                 numberFormatter.maximumFractionDigits = 9
-                            CalculatorDataSheet.viewNumS2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined() + "7"))!)
+                            CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined() + "7"))!)
                         }
                     }
                 }
@@ -84,22 +85,22 @@ struct ButtonList7to_: View {
                 if !CalculatorDataSheet.isCalculation{  // 연산 중이 아닐 때
                     CalculatorDataSheet.isDivide = false
                     CalculatorDataSheet.isAC = true
-                    if CalculatorDataSheet.viewNumS == "0"{
+                    if CalculatorDataSheet.viewNum == "0"{
                         CalculatorDataSheet.isDivide = false
-                        CalculatorDataSheet.viewNumS = "8"
+                        CalculatorDataSheet.viewNum = "8"
                     }
                     else{
                         let numberFormatter = NumberFormatter()
                             numberFormatter.numberStyle = .decimal
                             numberFormatter.maximumFractionDigits = 9
-                        CalculatorDataSheet.viewNumS = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined() + "8"))!)
+                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined() + "8"))!)
                     }
                 }
                 else {  //연산 중 일 때
               
                     if !CalculatorDataSheet.isFirstCalculation {  // 첫 연산 일 때
                         CalculatorDataSheet.isFirstCalculation = true // 다음은 첫 연산이 아니라고 명시
-                        CalculatorDataSheet.viewNumS2 = "8"
+                        CalculatorDataSheet.viewNum2 = "8"
                         CalculatorDataSheet.isDivide = false
                         CalculatorDataSheet.isPlus = false
                         CalculatorDataSheet.isMinus = false
@@ -107,14 +108,14 @@ struct ButtonList7to_: View {
                         
                     }
                     else {   //첫 연산이 아닐 때
-                        if CalculatorDataSheet.viewNumS2 == "0"{
-                            CalculatorDataSheet.viewNumS2 = "8"
+                        if CalculatorDataSheet.viewNum2 == "0"{
+                            CalculatorDataSheet.viewNum2 = "8"
                         }
                         else{
                             let numberFormatter = NumberFormatter()
                                 numberFormatter.numberStyle = .decimal
                                 numberFormatter.maximumFractionDigits = 9
-                            CalculatorDataSheet.viewNumS2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined() + "8"))!)
+                            CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined() + "8"))!)
                         }
                     }
                 }
@@ -140,22 +141,22 @@ struct ButtonList7to_: View {
                 if !CalculatorDataSheet.isCalculation{  // 연산 중이 아닐 때
                     CalculatorDataSheet.isDivide = false
                     CalculatorDataSheet.isAC = true
-                    if CalculatorDataSheet.viewNumS == "0"{
+                    if CalculatorDataSheet.viewNum == "0"{
                         CalculatorDataSheet.isDivide = false
-                        CalculatorDataSheet.viewNumS = "9"
+                        CalculatorDataSheet.viewNum = "9"
                     }
                     else{
                         let numberFormatter = NumberFormatter()
                             numberFormatter.numberStyle = .decimal
                             numberFormatter.maximumFractionDigits = 9
-                        CalculatorDataSheet.viewNumS = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined() + "9"))!)
+                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined() + "9"))!)
                     }
                 }
                 else {  //연산 중 일 때
               
                     if !CalculatorDataSheet.isFirstCalculation {  // 첫 연산 일 때
                         CalculatorDataSheet.isFirstCalculation = true // 다음은 첫 연산이 아니라고 명시
-                        CalculatorDataSheet.viewNumS2 = "9"
+                        CalculatorDataSheet.viewNum2 = "9"
                         CalculatorDataSheet.isDivide = false
                         CalculatorDataSheet.isPlus = false
                         CalculatorDataSheet.isMinus = false
@@ -163,14 +164,14 @@ struct ButtonList7to_: View {
                     }
                     
                     else {   //첫 연산이 아닐 때
-                        if CalculatorDataSheet.viewNumS2 == "0"{
-                            CalculatorDataSheet.viewNumS2 = "9"
+                        if CalculatorDataSheet.viewNum2 == "0"{
+                            CalculatorDataSheet.viewNum2 = "9"
                         }
                         else{
                             let numberFormatter = NumberFormatter()
                                 numberFormatter.numberStyle = .decimal
                                 numberFormatter.maximumFractionDigits = 9
-                            CalculatorDataSheet.viewNumS2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined() + "9"))!)
+                            CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined() + "9"))!)
                         }
                     }
                 }
@@ -183,7 +184,7 @@ struct ButtonList7to_: View {
                 if !CalculatorDataSheet.isCalculation{ //연산 중이지 않을 때
                     CalculatorDataSheet.isCalculation = true
                     CalculatorDataSheet.isActCalculation = "multiply"
-                    CalculatorDataSheet.viewNumS2 = CalculatorDataSheet.viewNumS
+                    CalculatorDataSheet.viewNum2 = CalculatorDataSheet.viewNum
                     let numberFormatter = NumberFormatter()
                         numberFormatter.numberStyle = .decimal
                         numberFormatter.maximumFractionDigits = 9
@@ -205,20 +206,20 @@ struct ButtonList7to_: View {
                         
                     }else {
                         if CalculatorDataSheet.isActCalculation == "plus" {
-                            CalculatorDataSheet.viewNumS = (numberFormatter.string(for:Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)!)
+                            CalculatorDataSheet.viewNum = (numberFormatter.string(for:Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)!)
                         }
                         else if CalculatorDataSheet.isActCalculation == "minus" {
-                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! - Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! - Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
                         }
                         else if CalculatorDataSheet.isActCalculation == "divide" {
-                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! / Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! / Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
                         }
                         else if CalculatorDataSheet.isActCalculation == "multiply" {
-                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
                         }
                     }
                     
-                    CalculatorDataSheet.viewNumS2 = CalculatorDataSheet.viewNumS
+                    CalculatorDataSheet.viewNum2 = CalculatorDataSheet.viewNum
                     CalculatorDataSheet.isDivide =  false
                     CalculatorDataSheet.isPlus = false
                     CalculatorDataSheet.isMinus = false

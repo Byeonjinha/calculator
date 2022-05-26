@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ButtonListActo_: View {
     @EnvironmentObject var CalculatorDataSheet: CalculatorDataSheet
+    
     var body: some View {
         HStack{
             Button(action:{
@@ -18,17 +19,17 @@ struct ButtonListActo_: View {
                 CalculatorDataSheet.isMinus = false
                 CalculatorDataSheet.isMultiply  = false
                 CalculatorDataSheet.isAC = false
-                CalculatorDataSheet.viewNumS = "0"
+                CalculatorDataSheet.viewNum = "0"
             }
             ){
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.indigo).overlay( CalculatorDataSheet.isAC ? Text("C").foregroundColor(.white) : Text("AC").foregroundColor(.white))
             }
             Button(action:{
                 if !CalculatorDataSheet.isCalculation { // 연산 중이 아니면
-                    CalculatorDataSheet.viewNumS = String((Double(CalculatorDataSheet.viewNumS)!) * -1)
+                    CalculatorDataSheet.viewNum = String((Double(CalculatorDataSheet.viewNum)!) * -1)
                 }
                 else {
-                    CalculatorDataSheet.viewNumS2 = String((Double(CalculatorDataSheet.viewNumS2)!) * -1)
+                    CalculatorDataSheet.viewNum2 = String((Double(CalculatorDataSheet.viewNum2)!) * -1)
                 }
             }
             ){
@@ -36,19 +37,19 @@ struct ButtonListActo_: View {
             }
             Button(action:{
                 if !CalculatorDataSheet.isCalculation { // 연산 중이 아니면
-                    if CalculatorDataSheet.viewNumS != "0"{
+                    if CalculatorDataSheet.viewNum != "0"{
                         let numberFormatter = NumberFormatter()
                             numberFormatter.numberStyle = .decimal
                             numberFormatter.maximumFractionDigits = 9
-                        CalculatorDataSheet.viewNumS = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! / 100)!)
+                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! / 100)!)
                     }
                 }
                 else{
-                    if CalculatorDataSheet.viewNumS2 != "0"{
+                    if CalculatorDataSheet.viewNum2 != "0"{
                         let numberFormatter = NumberFormatter()
                             numberFormatter.numberStyle = .decimal
                             numberFormatter.maximumFractionDigits = 9
-                        CalculatorDataSheet.viewNumS2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())! / 100)!)
+                        CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())! / 100)!)
                     }
                 }
             }
@@ -59,7 +60,7 @@ struct ButtonListActo_: View {
                 if !CalculatorDataSheet.isCalculation{ //연산 중이지 않을 때
                     CalculatorDataSheet.isCalculation = true
                     CalculatorDataSheet.isActCalculation = "divide"
-                    CalculatorDataSheet.viewNumS2 = CalculatorDataSheet.viewNumS
+                    CalculatorDataSheet.viewNum2 = CalculatorDataSheet.viewNum
                     let numberFormatter = NumberFormatter()
                         numberFormatter.numberStyle = .decimal
                         numberFormatter.maximumFractionDigits = 9
@@ -81,20 +82,20 @@ struct ButtonListActo_: View {
                     }else {
                         print(CalculatorDataSheet.isCalculation , CalculatorDataSheet.isFirstCalculation)
                         if CalculatorDataSheet.isActCalculation == "plus" {
-                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
                         }
                         else if CalculatorDataSheet.isActCalculation == "minus" {
-                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! - Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! - Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
                         }
                         else if CalculatorDataSheet.isActCalculation == "divide" {
-                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! / Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! / Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
                         }
                         else if CalculatorDataSheet.isActCalculation == "multiply" {
-                            CalculatorDataSheet.viewNumS = String(Double(CalculatorDataSheet.viewNumS.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNumS2.components(separatedBy: [","]).joined())!)
+                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
                         }
                     }
                     
-                    CalculatorDataSheet.viewNumS2 = CalculatorDataSheet.viewNumS
+                    CalculatorDataSheet.viewNum2 = CalculatorDataSheet.viewNum
                     CalculatorDataSheet.isDivide = true
                     CalculatorDataSheet.isPlus = false
                     CalculatorDataSheet.isMinus = false

@@ -8,21 +8,17 @@
 import Foundation
 
 final class CalculatorDataSheet: ObservableObject{
-    @Published var viewNumS : String = "0" {
+    @Published var viewNum : String = "0" {
         didSet {
-            viewNumC = Array(viewNumS)
+            viewNumC = Array(viewNum)
         }
     }
-    @Published var viewNumS2 : String = "0" {
+    @Published var viewNum2 : String = "0" {
         didSet {
-            viewNumC2 = Array(viewNumS2)
+            viewNumC2 = Array(viewNum2)
         }
     }
-    @Published var viewNum : Double = 0 {
-        didSet {
-            viewNumS = String(viewNum)
-        }
-    }
+
     @Published var isPlus : Bool = false 
     @Published var isMinus : Bool = false
     @Published var isMultiply : Bool = false

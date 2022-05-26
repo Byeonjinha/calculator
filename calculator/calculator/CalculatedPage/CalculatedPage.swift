@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CalculatedPage: View {
-   
     @EnvironmentObject var CalculatorDataSheet: CalculatorDataSheet
+    
     var body: some View {
         VStack(){
             HStack{
-                Text(CalculatorDataSheet.isCalculation ?  CalculatorDataSheet.viewNumS2: CalculatorDataSheet.viewNumS)
+                Text(CalculatorDataSheet.isCalculation ?  CalculatorDataSheet.viewNum2: CalculatorDataSheet.viewNum)
                     .foregroundColor(.white)
                                   }
             .frame(width : UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height / 3, alignment: .bottomTrailing)
