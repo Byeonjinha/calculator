@@ -22,7 +22,14 @@ struct ButtonListActo_: View {
                 CalculatorDataSheet.viewNum = "0"
             }
             ){
-                Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.indigo).overlay( CalculatorDataSheet.isAC ? Text("C").foregroundColor(.white) : Text("AC").foregroundColor(.white))
+                Circle()
+                    .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
+                    .foregroundColor(.indigo)
+                    .overlay( CalculatorDataSheet.isAC ?
+                        Text("C")
+                            .foregroundColor(.white) :
+                        Text("AC")
+                            .foregroundColor(.white))
             }
             Button(action:{
                 if !CalculatorDataSheet.isCalculation { // 연산 중이 아니면
@@ -33,7 +40,11 @@ struct ButtonListActo_: View {
                 }
             }
             ){
-                Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.indigo).overlay(Image(systemName: "plus.forwardslash.minus").foregroundColor(.white))
+                Circle()
+                    .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
+                    .foregroundColor(.indigo)
+                    .overlay(Image(systemName: "plus.forwardslash.minus")
+                        .foregroundColor(.white))
             }
             Button(action:{
                 if !CalculatorDataSheet.isCalculation { // 연산 중이 아니면
@@ -54,7 +65,11 @@ struct ButtonListActo_: View {
                 }
             }
             ){
-                Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.indigo).overlay(Image(systemName:"percent").foregroundColor(.white))
+                Circle()
+                    .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
+                    .foregroundColor(.indigo)
+                    .overlay(Image(systemName:"percent")
+                        .foregroundColor(.white))
             }
             Button(action:{
                 if !CalculatorDataSheet.isCalculation{ //연산 중이지 않을 때
@@ -105,7 +120,11 @@ struct ButtonListActo_: View {
                 }
             }
             ){
-                Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor( CalculatorDataSheet.isDivide ?  .white : .orange ).overlay(Image(systemName: "divide").foregroundColor(CalculatorDataSheet.isDivide ?  .orange : .white))
+                Circle()
+                    .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
+                    .foregroundColor( CalculatorDataSheet.isDivide ?  .white : .orange )
+                    .overlay(Image(systemName: "divide")
+                        .foregroundColor(CalculatorDataSheet.isDivide ?  .orange : .white))
             }
         }
     }
