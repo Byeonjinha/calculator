@@ -13,19 +13,7 @@ struct ButtonList1to_: View {
     var body: some View {
         HStack{
             Button(action:{
-                
-                if CalculatorDataSheet.isPlus {
-                    CalculatorDataSheet.isActCalculation = "plus"
-                }
-                else if CalculatorDataSheet.isDivide {
-                    CalculatorDataSheet.isActCalculation = "divide"
-                }
-                else if CalculatorDataSheet.isMinus {
-                    CalculatorDataSheet.isActCalculation = "minus"
-                }
-                else if CalculatorDataSheet.isMultiply {
-                    CalculatorDataSheet.isActCalculation = "multiply"
-                }
+                CalculatorDataSheet.discrimination() 
 
                 if !CalculatorDataSheet.isCalculation{  // 연산 중이 아닐 때
                     CalculatorDataSheet.isDivide = false
@@ -69,18 +57,7 @@ struct ButtonList1to_: View {
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.gray).overlay(Text("1").foregroundColor(.white))
             }
             Button(action:{
-                if CalculatorDataSheet.isPlus {
-                    CalculatorDataSheet.isActCalculation = "plus"
-                }
-                else if CalculatorDataSheet.isDivide {
-                    CalculatorDataSheet.isActCalculation = "divide"
-                }
-                else if CalculatorDataSheet.isMinus {
-                    CalculatorDataSheet.isActCalculation = "minus"
-                }
-                else if CalculatorDataSheet.isMultiply {
-                    CalculatorDataSheet.isActCalculation = "multiply"
-                }
+                CalculatorDataSheet.discrimination()
                 
                 if !CalculatorDataSheet.isCalculation{  // 연산 중이 아닐 때
                     CalculatorDataSheet.isDivide = false
@@ -124,18 +101,7 @@ struct ButtonList1to_: View {
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.gray).overlay(Text("2").foregroundColor(.white))
             }
             Button(action:{
-                if CalculatorDataSheet.isPlus {
-                    CalculatorDataSheet.isActCalculation = "plus"
-                }
-                else if CalculatorDataSheet.isDivide {
-                    CalculatorDataSheet.isActCalculation = "divide"
-                }
-                else if CalculatorDataSheet.isMinus {
-                    CalculatorDataSheet.isActCalculation = "minus"
-                }
-                else if CalculatorDataSheet.isMultiply {
-                    CalculatorDataSheet.isActCalculation = "multiply"
-                }
+                CalculatorDataSheet.discrimination()
                 
                 if !CalculatorDataSheet.isCalculation{  // 연산 중이 아닐 때
                     CalculatorDataSheet.isDivide = false

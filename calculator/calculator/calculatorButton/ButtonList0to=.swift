@@ -13,18 +13,7 @@ struct ButtonList0to_: View {
     var body: some View {
         HStack{
             Button(action:{
-                if CalculatorDataSheet.isPlus {
-                    CalculatorDataSheet.isActCalculation = "plus"
-                }
-                else if CalculatorDataSheet.isDivide {
-                    CalculatorDataSheet.isActCalculation = "divide"
-                }
-                else if CalculatorDataSheet.isMinus {
-                    CalculatorDataSheet.isActCalculation = "minus"
-                }
-                else if CalculatorDataSheet.isMultiply {
-                    CalculatorDataSheet.isActCalculation = "multiply"
-                }
+          
                 
                 if !CalculatorDataSheet.isCalculation{  // 연산 중이 아닐 때
                     CalculatorDataSheet.isDivide = false
@@ -68,18 +57,7 @@ struct ButtonList0to_: View {
                 RoundedRectangle(cornerSize: CGSize(width: UIScreen.main.bounds.size.width/5 * 3 , height: UIScreen.main.bounds.size.width/5 * 3)).frame( width: UIScreen.main.bounds.size.width/5 * 2 , height : UIScreen.main.bounds.size.height / 10).foregroundColor(.gray).overlay(Text("0").foregroundColor(.white))
             }
             Button(action:{
-                if CalculatorDataSheet.isPlus {
-                    CalculatorDataSheet.isActCalculation = "plus"
-                }
-                else if CalculatorDataSheet.isDivide {
-                    CalculatorDataSheet.isActCalculation = "divide"
-                }
-                else if CalculatorDataSheet.isMinus {
-                    CalculatorDataSheet.isActCalculation = "minus"
-                }
-                else if CalculatorDataSheet.isMultiply {
-                    CalculatorDataSheet.isActCalculation = "multiply"
-                }
+                CalculatorDataSheet.discrimination()
                 CalculatorDataSheet.isAC = true
                 if !CalculatorDataSheet.isCalculation { // 연산 중이 아니면
                     if !CalculatorDataSheet.viewNumC.contains(".") { // . 을 포함하고 있지 않으면

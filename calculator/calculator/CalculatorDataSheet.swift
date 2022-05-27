@@ -28,4 +28,26 @@ final class CalculatorDataSheet: ObservableObject{
     @Published var isActCalculation = ""
     @Published var viewNumC : [Character] = ["0"]
     @Published var viewNumC2 : [Character] = ["0"]
+    func discrimination()-> String{
+        if isPlus {
+            return "plus"
+        }
+        else if isDivide {
+            return "divide"
+        }
+        else if isMinus {
+            return "minus"
+        }
+        else if isMultiply {
+            return "multiply"
+        }
+        return "R"
+    }
+    
+    enum Operator: String {
+    case plus = "plus"
+    case divide = "devide"
+    case minus = "minus"
+    case multiply = "multiply"
+}
 }
