@@ -10,25 +10,16 @@ import SwiftUI
 struct ButtonList1to_: View {
     @EnvironmentObject var CalculatorDataSheet: CalculatorDataSheet
     
+    var stack : [InputString] = [ InputString.one,InputString.two,InputString.three]
     var body: some View {
         HStack{
-            Button(action:{
-                CalculatorDataSheet.numberPad(inputNum: InputString.one)
-            }
-            ){
-                PadView(padNumber: InputString.one)
-            }
-            Button(action:{
-                CalculatorDataSheet.numberPad(inputNum: InputString.two)
-            }
-            ){
-                PadView(padNumber: InputString.two)
-            }
-            Button(action:{
-                CalculatorDataSheet.numberPad(inputNum: InputString.three)
-            }
-            ){
-                PadView(padNumber: InputString.three)
+            ForEach(0..<3){ i in
+                Button(action:{
+                    CalculatorDataSheet.numberPad(inputNum: stack[i])
+                }
+                ){
+                    PadView(padNumber: stack[i])
+                }
             }
             Button(action:{
                 CalculatorDataSheet.calculation(ooperator: Operator.plus)
