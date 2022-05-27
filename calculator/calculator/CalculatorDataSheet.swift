@@ -44,10 +44,53 @@ final class CalculatorDataSheet: ObservableObject{
         return "R"
     }
     
-    enum Operator: String {
-    case plus = "plus"
-    case divide = "devide"
-    case minus = "minus"
-    case multiply = "multiply"
+    func calculation(ooperator: String) {
+            if !isCalculation {  //연산 중이지 않을 때
+                isCalculation = true
+                isActCalculation = ooperator
+                viewNum2 = viewNum
+                let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .decimal
+                    numberFormatter.maximumFractionDigits = 9
+                isDivide = ooperator == "divide" ? true : false
+                isPlus = ooperator == "plus" ? true : false
+                isMinus = ooperator == "minus" ? true : false
+                isMultiply = ooperator == "multiply" ? true : false
+            }
+            else{  // 연산 중일 때
+                isCalculation = true
+                let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .decimal
+                    numberFormatter.maximumFractionDigits = 9
+                if isCalculation && isActCalculation == ooperator {
+                }else {
+                    if isActCalculation == "plus" {
+                        viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! + Double(viewNum2.components(separatedBy: [","]).joined())!)
+                    }
+                    else if isActCalculation == "minus" {
+                        viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! - Double(viewNum2.components(separatedBy: [","]).joined())!)
+                    }
+                    else if isActCalculation == "divide" {
+                        viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! / Double(viewNum2.components(separatedBy: [","]).joined())!)
+                    }
+                    else if isActCalculation == "multiply" {
+                        viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! * Double(viewNum2.components(separatedBy: [","]).joined())!)
+                    }
+                }
+                viewNum2 = viewNum
+                isDivide = ooperator == "divide" ? true : false
+                isPlus = ooperator == "plus" ? true : false
+                isMinus = ooperator == "minus" ? true : false
+                isMultiply = ooperator == "multiply" ? true : false
+                isFirstCalculation = false
+            }
+    }
+    
+    enum Operator: Int {
+    case plus
+    case divide
+    case minus
+    case multiply
 }
+
 }

@@ -13,24 +13,7 @@ struct ButtonList0to_: View {
     var body: some View {
         HStack{
             Button(action:{
-          
-                
-                if !CalculatorDataSheet.isCalculation{  // 연산 중이 아닐 때
-                    CalculatorDataSheet.isDivide = false
-                    CalculatorDataSheet.isAC = true
-                    if CalculatorDataSheet.viewNum == "0"{
-                        CalculatorDataSheet.isDivide = false
-                        CalculatorDataSheet.viewNum = "0"
-                    }
-                    else{
-                        let numberFormatter = NumberFormatter()
-                            numberFormatter.numberStyle = .decimal
-                            numberFormatter.maximumFractionDigits = 9
-                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined() + "0"))!)
-                    }
-                }
-                else {  //연산 중 일 때
-              
+                if CalculatorDataSheet.isCalculation{
                     if !CalculatorDataSheet.isFirstCalculation {  // 첫 연산 일 때
                         CalculatorDataSheet.isFirstCalculation = true // 다음은 첫 연산이 아니라고 명시
                         CalculatorDataSheet.viewNum2 = "0"
@@ -51,6 +34,24 @@ struct ButtonList0to_: View {
                             CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined() + "0"))!)
                         }
                     }
+                    
+                    
+        
+                }
+                else {  //연산 중 일 때
+                    // 연산 중이 아닐 때
+                    CalculatorDataSheet.isDivide = false
+                    CalculatorDataSheet.isAC = true
+                    if CalculatorDataSheet.viewNum == "0"{
+                        CalculatorDataSheet.isDivide = false
+                        CalculatorDataSheet.viewNum = "0"
+                    }
+                    else{
+                        let numberFormatter = NumberFormatter()
+                            numberFormatter.numberStyle = .decimal
+                            numberFormatter.maximumFractionDigits = 9
+                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined() + "0"))!)
+                    }
                 }
             }
             ){
@@ -69,6 +70,8 @@ struct ButtonList0to_: View {
                     CalculatorDataSheet.viewNum2 += "."
                     }
                 }
+                
+                
             }){
                 Circle()
                     .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)

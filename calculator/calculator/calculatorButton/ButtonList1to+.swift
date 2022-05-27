@@ -13,7 +13,7 @@ struct ButtonList1to_: View {
     var body: some View {
         HStack{
             Button(action:{
-                CalculatorDataSheet.discrimination() 
+                CalculatorDataSheet.discrimination()
 
                 if !CalculatorDataSheet.isCalculation{  // 연산 중이 아닐 때
                     CalculatorDataSheet.isDivide = false
@@ -145,50 +145,7 @@ struct ButtonList1to_: View {
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.gray).overlay(Text("3").foregroundColor(.white))
             }
             Button(action:{
-                if !CalculatorDataSheet.isCalculation{ //연산 중이지 않을 때
-                    CalculatorDataSheet.isCalculation = true
-                    CalculatorDataSheet.viewNum2 = CalculatorDataSheet.viewNum
-                    let numberFormatter = NumberFormatter()
-                        numberFormatter.numberStyle = .decimal
-                        numberFormatter.maximumFractionDigits = 9
-                    CalculatorDataSheet.isDivide = false
-                    CalculatorDataSheet.isPlus = true
-                    CalculatorDataSheet.isMinus = false
-                    CalculatorDataSheet.isMultiply = false
-                }
-                
-                
-                else{  // 연산 중일 때
-                    CalculatorDataSheet.isCalculation = true
-                    let numberFormatter = NumberFormatter()
-                        numberFormatter.numberStyle = .decimal
-                        numberFormatter.maximumFractionDigits = 9
-                    
-                    if CalculatorDataSheet.isCalculation && CalculatorDataSheet.isActCalculation == "plus"{
-                        
-                    }else {
-                        if CalculatorDataSheet.isActCalculation == "plus" {
-                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
-                        }
-                        else if CalculatorDataSheet.isActCalculation == "minus" {
-                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! - Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
-                        }
-                        else if CalculatorDataSheet.isActCalculation == "divide" {
-                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! / Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
-                        }
-                        else if CalculatorDataSheet.isActCalculation == "multiply" {
-                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
-                        }
-                    }
-                    
-                    CalculatorDataSheet.viewNum2 = CalculatorDataSheet.viewNum
-                    CalculatorDataSheet.isDivide = false
-                    CalculatorDataSheet.isPlus = true
-                    CalculatorDataSheet.isMinus = false
-                    CalculatorDataSheet.isMultiply = false
-                    CalculatorDataSheet.isFirstCalculation = false
-                    
-                }
+                CalculatorDataSheet.calculation(ooperator: "plus")
             }
             ){
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(CalculatorDataSheet.isPlus ? .white : .orange).overlay(Image(systemName: "plus").foregroundColor(CalculatorDataSheet.isPlus ? .orange : .white))

@@ -148,53 +148,7 @@ struct ButtonList7to_: View {
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.gray).overlay(Text("9").foregroundColor(.white))
             }
             Button(action:{
-                if !CalculatorDataSheet.isCalculation{ //연산 중이지 않을 때
-                    CalculatorDataSheet.isCalculation = true
-                    CalculatorDataSheet.isActCalculation = "multiply"
-                    CalculatorDataSheet.viewNum2 = CalculatorDataSheet.viewNum
-                    let numberFormatter = NumberFormatter()
-                        numberFormatter.numberStyle = .decimal
-                        numberFormatter.maximumFractionDigits = 9
-                    CalculatorDataSheet.isDivide =  false
-                    CalculatorDataSheet.isPlus = false
-                    CalculatorDataSheet.isMinus = false
-                    CalculatorDataSheet.isMultiply = true
-                }
-                
-                
-                else{  // 연산 중일 때
-                    CalculatorDataSheet.isCalculation = true
-                    let numberFormatter = NumberFormatter()
-                        numberFormatter.numberStyle = .decimal
-                        numberFormatter.maximumFractionDigits = 9
-                    
-                    
-                    if CalculatorDataSheet.isCalculation && CalculatorDataSheet.isActCalculation == "multiply" { // 실행된 변수를 만들어서 그 변수와 비교를 통해 막아야할 듯
-                        
-                    }else {
-                        if CalculatorDataSheet.isActCalculation == "plus" {
-                            CalculatorDataSheet.viewNum = (numberFormatter.string(for:Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)!)
-                        }
-                        else if CalculatorDataSheet.isActCalculation == "minus" {
-                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! - Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
-                        }
-                        else if CalculatorDataSheet.isActCalculation == "divide" {
-                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! / Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
-                        }
-                        else if CalculatorDataSheet.isActCalculation == "multiply" {
-                            CalculatorDataSheet.viewNum = String(Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)
-                        }
-                    }
-                    
-                    CalculatorDataSheet.viewNum2 = CalculatorDataSheet.viewNum
-                    CalculatorDataSheet.isDivide =  false
-                    CalculatorDataSheet.isPlus = false
-                    CalculatorDataSheet.isMinus = false
-                    CalculatorDataSheet.isMultiply = true
-                    CalculatorDataSheet.isFirstCalculation = false
-                    
-                }
-
+                CalculatorDataSheet.calculation(ooperator: "multiply")
             }
             ){
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(CalculatorDataSheet.isMultiply ? .white : .orange).overlay(Image(systemName: "multiply").foregroundColor(CalculatorDataSheet.isMultiply ? .orange : .white))
