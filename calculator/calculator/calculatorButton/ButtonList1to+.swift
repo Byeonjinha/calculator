@@ -145,7 +145,7 @@ struct ButtonList1to_: View {
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.gray).overlay(Text("3").foregroundColor(.white))
             }
             Button(action:{
-                CalculatorDataSheet.calculation(ooperator: "plus")
+                CalculatorDataSheet.calculation(ooperator: Operator.plus)
             }
             ){
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(CalculatorDataSheet.isPlus ? .white : .orange).overlay(Image(systemName: "plus").foregroundColor(CalculatorDataSheet.isPlus ? .orange : .white))

@@ -14,7 +14,7 @@ struct ButtonListActo_: View {
         HStack{
             Button(action:{
                 CalculatorDataSheet.isCalculation = false
-                CalculatorDataSheet.isActCalculation = ""
+                CalculatorDataSheet.isActCalculation = Operator.equal
                 CalculatorDataSheet.isDivide  = false
                 CalculatorDataSheet.isPlus = false
                 CalculatorDataSheet.isMinus = false
@@ -75,7 +75,7 @@ struct ButtonListActo_: View {
                         .foregroundColor(.white))
             }
             Button(action:{
-                CalculatorDataSheet.calculation(ooperator: "divide")
+                CalculatorDataSheet.calculation(ooperator: Operator.divide)
             }
             ){
                 Circle()

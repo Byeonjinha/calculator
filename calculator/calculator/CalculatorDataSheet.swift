@@ -18,6 +18,7 @@ final class CalculatorDataSheet: ObservableObject{
              viewNumC2 = Array(viewNum2)
          }
      }
+    
     @Published var isPlus = false
     @Published var isMinus = false
     @Published var isMultiply = false
@@ -25,7 +26,7 @@ final class CalculatorDataSheet: ObservableObject{
     @Published var isCalculation = false
     @Published var isFirstCalculation = false
     @Published var isAC = false
-    @Published var isActCalculation = ""
+    @Published var isActCalculation = Operator.equal
     @Published var viewNumC : [Character] = ["0"]
     @Published var viewNumC2 : [Character] = ["0"]
     func discrimination()-> String{
@@ -44,7 +45,7 @@ final class CalculatorDataSheet: ObservableObject{
         return "R"
     }
     
-    func calculation(ooperator: String) {
+    func calculation(ooperator: Operator) {
             if !isCalculation {  //연산 중이지 않을 때
                 isCalculation = true
                 isActCalculation = ooperator
@@ -52,10 +53,10 @@ final class CalculatorDataSheet: ObservableObject{
                 let numberFormatter = NumberFormatter()
                     numberFormatter.numberStyle = .decimal
                     numberFormatter.maximumFractionDigits = 9
-                isDivide = ooperator == "divide" ? true : false
-                isPlus = ooperator == "plus" ? true : false
-                isMinus = ooperator == "minus" ? true : false
-                isMultiply = ooperator == "multiply" ? true : false
+                isDivide = ooperator == Operator.divide ? true : false
+                isPlus = ooperator == Operator.plus ? true : false
+                isMinus = ooperator == Operator.minus ? true : false
+                isMultiply = ooperator == Operator.multiply ? true : false
             }
             else{  // 연산 중일 때
                 isCalculation = true
@@ -64,33 +65,34 @@ final class CalculatorDataSheet: ObservableObject{
                     numberFormatter.maximumFractionDigits = 9
                 if isCalculation && isActCalculation == ooperator {
                 }else {
-                    if isActCalculation == "plus" {
+                    if isActCalculation == Operator.plus {
                         viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! + Double(viewNum2.components(separatedBy: [","]).joined())!)
                     }
-                    else if isActCalculation == "minus" {
+                    else if isActCalculation == Operator.minus {
                         viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! - Double(viewNum2.components(separatedBy: [","]).joined())!)
                     }
-                    else if isActCalculation == "divide" {
+                    else if isActCalculation == Operator.divide {
                         viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! / Double(viewNum2.components(separatedBy: [","]).joined())!)
                     }
-                    else if isActCalculation == "multiply" {
+                    else if isActCalculation == Operator.multiply {
                         viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! * Double(viewNum2.components(separatedBy: [","]).joined())!)
                     }
                 }
                 viewNum2 = viewNum
-                isDivide = ooperator == "divide" ? true : false
-                isPlus = ooperator == "plus" ? true : false
-                isMinus = ooperator == "minus" ? true : false
-                isMultiply = ooperator == "multiply" ? true : false
+                isDivide = ooperator == Operator.divide ? true : false
+                isPlus = ooperator == Operator.plus ? true : false
+                isMinus = ooperator == Operator.minus ? true : false
+                isMultiply = ooperator == Operator.multiply ? true : false
                 isFirstCalculation = false
             }
     }
     
-    enum Operator: Int {
+  
+}
+enum Operator: Int {
+    case equal
     case plus
     case divide
     case minus
     case multiply
-}
-
 }

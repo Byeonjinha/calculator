@@ -148,7 +148,7 @@ struct ButtonList7to_: View {
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.gray).overlay(Text("9").foregroundColor(.white))
             }
             Button(action:{
-                CalculatorDataSheet.calculation(ooperator: "multiply")
+                CalculatorDataSheet.calculation(ooperator: Operator.multiply)
             }
             ){
                 Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(CalculatorDataSheet.isMultiply ? .white : .orange).overlay(Image(systemName: "multiply").foregroundColor(CalculatorDataSheet.isMultiply ? .orange : .white))

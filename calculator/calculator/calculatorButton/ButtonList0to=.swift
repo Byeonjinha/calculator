@@ -21,7 +21,6 @@ struct ButtonList0to_: View {
                         CalculatorDataSheet.isPlus = false
                         CalculatorDataSheet.isMinus = false
                         CalculatorDataSheet.isMultiply = false
-                        
                     }
                     else {   //첫 연산이 아닐 때
                         if CalculatorDataSheet.viewNum2 == "0"{
@@ -34,9 +33,6 @@ struct ButtonList0to_: View {
                             CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined() + "0"))!)
                         }
                     }
-                    
-                    
-        
                 }
                 else {  //연산 중 일 때
                     // 연산 중이 아닐 때
@@ -70,8 +66,6 @@ struct ButtonList0to_: View {
                     CalculatorDataSheet.viewNum2 += "."
                     }
                 }
-                
-                
             }){
                 Circle()
                     .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
@@ -84,16 +78,16 @@ struct ButtonList0to_: View {
                 let numberFormatter = NumberFormatter()
                     numberFormatter.numberStyle = .decimal
                     numberFormatter.maximumFractionDigits = 9
-                if CalculatorDataSheet.isActCalculation == "plus" {
+                if CalculatorDataSheet.isActCalculation == Operator.plus {
                     CalculatorDataSheet.viewNum = (numberFormatter.string(for:Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! + Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)!)
                 }
-                else if CalculatorDataSheet.isActCalculation == "minus" {
+                else if CalculatorDataSheet.isActCalculation == Operator.minus {
                     CalculatorDataSheet.viewNum = (numberFormatter.string(for:Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! - Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)!)
                 }
-                else if CalculatorDataSheet.isActCalculation == "divide" {
+                else if CalculatorDataSheet.isActCalculation == Operator.divide {
                     CalculatorDataSheet.viewNum = (numberFormatter.string(for:Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! / Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)!)
                 }
-                else if CalculatorDataSheet.isActCalculation == "multiply" {
+                else if CalculatorDataSheet.isActCalculation == Operator.multiply {
                     CalculatorDataSheet.viewNum = (numberFormatter.string(for:Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! * Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!)!)
                 }
                 CalculatorDataSheet.isCalculation = false
