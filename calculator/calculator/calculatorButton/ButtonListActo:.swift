@@ -21,7 +21,7 @@ struct ButtonListActo_: View {
                 CalculatorDataSheet.isMultiply  = false
                 CalculatorDataSheet.isAC = false
                 CalculatorDataSheet.viewNum = "0"
-                
+                CalculatorDataSheet.isFirstCalculation = false
                 CalculatorDataSheet.viewNum2 = "0"
             }
             ){
@@ -35,11 +35,22 @@ struct ButtonListActo_: View {
                             .foregroundColor(.white))
             }
             Button(action:{
+                let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .decimal
+                    numberFormatter.maximumFractionDigits = 9
                 if !CalculatorDataSheet.isCalculation { // 연산 중이 아니면
-                    CalculatorDataSheet.viewNum = String((Double(CalculatorDataSheet.viewNum)!) * -1)
+                    CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! * -1)!)
                 }
                 else {
-                    CalculatorDataSheet.viewNum2 = String((Double(CalculatorDataSheet.viewNum2)!) * -1)
+                    if !CalculatorDataSheet.isFirstCalculation {
+                        CalculatorDataSheet.isFirstCalculation = true
+                        CalculatorDataSheet.viewNum2 = "-0"
+                    
+                    }
+                    else{
+                        CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())! * -1)!)
+                    }
+                  
                 }
             }
             ){

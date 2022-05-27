@@ -44,15 +44,50 @@ final class CalculatorDataSheet: ObservableObject{
         }
         return "R"
     }
-    
+    func numberPad (inputNum: InputString) {
+        discrimination()
+        if isCalculation{
+            if !isFirstCalculation {  // 첫 연산 일 때
+                isFirstCalculation = true // 다음은 첫 연산이 아니라고 명시
+                viewNum2 = String(inputNum.rawValue)
+                isDivide = false
+                isPlus = false
+                isMinus = false
+                isMultiply = false
+            }
+            else {   //첫 연산이 아닐 때
+                if viewNum2 == "0"{
+                    viewNum2 = String(inputNum.rawValue)
+                }
+                else{
+                    let numberFormatter = NumberFormatter()
+                        numberFormatter.numberStyle = .decimal
+                        numberFormatter.maximumFractionDigits = 9
+                    viewNum2 = (numberFormatter.string(for: Double(viewNum2.components(separatedBy: [","]).joined() + String(inputNum.rawValue)))!)
+                }
+            }
+        }
+        else {  //연산 중 일 때
+            // 연산 중이 아닐 때
+            isDivide = false
+            isAC = true
+            if viewNum == "0"{
+                isDivide = false
+                viewNum = String(inputNum.rawValue)
+            }
+            else{
+                let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .decimal
+                    numberFormatter.maximumFractionDigits = 9
+                viewNum = (numberFormatter.string(for: Double(viewNum.components(separatedBy: [","]).joined() + String(inputNum.rawValue)))!)
+            }
+        }
+    }
     func calculation(ooperator: Operator) {
             if !isCalculation {  //연산 중이지 않을 때
                 isCalculation = true
                 isActCalculation = ooperator
                 viewNum2 = viewNum
-                let numberFormatter = NumberFormatter()
-                    numberFormatter.numberStyle = .decimal
-                    numberFormatter.maximumFractionDigits = 9
                 isDivide = ooperator == Operator.divide ? true : false
                 isPlus = ooperator == Operator.plus ? true : false
                 isMinus = ooperator == Operator.minus ? true : false
@@ -65,17 +100,20 @@ final class CalculatorDataSheet: ObservableObject{
                     numberFormatter.maximumFractionDigits = 9
                 if isCalculation && isActCalculation == ooperator {
                 }else {
+                    var previousValue = Double(viewNum.components(separatedBy: [","]).joined())!
+                    var afterValue = Double(viewNum2.components(separatedBy: [","]).joined())!
+                    
                     if isActCalculation == Operator.plus {
-                        viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! + Double(viewNum2.components(separatedBy: [","]).joined())!)
+                        viewNum = numberFormatter.string(for : previousValue + afterValue)!
                     }
                     else if isActCalculation == Operator.minus {
-                        viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! - Double(viewNum2.components(separatedBy: [","]).joined())!)
+                        viewNum = numberFormatter.string(for : previousValue - afterValue)!
                     }
                     else if isActCalculation == Operator.divide {
-                        viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! / Double(viewNum2.components(separatedBy: [","]).joined())!)
+                        viewNum = numberFormatter.string(for : previousValue / afterValue)!
                     }
                     else if isActCalculation == Operator.multiply {
-                        viewNum = String(Double(viewNum.components(separatedBy: [","]).joined())! * Double(viewNum2.components(separatedBy: [","]).joined())!)
+                        viewNum = numberFormatter.string(for : previousValue * afterValue)!
                     }
                 }
                 viewNum2 = viewNum
@@ -89,10 +127,25 @@ final class CalculatorDataSheet: ObservableObject{
     
   
 }
-enum Operator: Int {
+enum Operator {
     case equal
     case plus
     case divide
     case minus
     case multiply
 }
+
+enum InputString: Int {
+    case zero = 0
+    case one
+    case two
+    case three
+    case four
+    case five
+    case six
+    case seven
+    case eight
+    case nine
+}
+
+
