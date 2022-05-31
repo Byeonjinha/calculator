@@ -11,12 +11,17 @@ struct ButtonList0to_: View {
     @EnvironmentObject var CalculatorDataSheet: CalculatorDataSheet
     
     var body: some View {
-        HStack{
+        HStack(spacing:10){
             Button(action:{
                 CalculatorDataSheet.numberPad(inputNum: InputString.zero)
             }
             ){
-                RoundedRectangle(cornerSize: CGSize(width: UIScreen.main.bounds.size.width/5 * 3 , height: UIScreen.main.bounds.size.width/5 * 3)).frame( width: UIScreen.main.bounds.size.width/5 * 2 , height : UIScreen.main.bounds.size.height / 10).foregroundColor(.gray).overlay(Text("0").foregroundColor(.white))
+                RoundedRectangle(cornerSize: CGSize(width: UIScreen.main.bounds.size.width/5 * 3 , height: UIScreen.main.bounds.size.width/5 * 3))
+                    .frame( width: UIScreen.main.bounds.size.width/4 * 2 , height : UIScreen.main.bounds.size.height / 10)
+                    .foregroundColor(.gray)
+                    .overlay(Text("0")
+                        .font(Font.custom("Noteworthy", size: 20, relativeTo: .title))
+                        .foregroundColor(.white))
             }
             Button(action:{
                 CalculatorDataSheet.discrimination()
@@ -33,10 +38,10 @@ struct ButtonList0to_: View {
                 }
             }){
                 Circle()
-                    .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
                     .foregroundColor(.gray)
                     .overlay(
                         Text(".")
+                            .font(Font.custom("Noteworthy", size: 20, relativeTo: .title))
                             .foregroundColor(.white))
             }
             Button(action:{
@@ -45,23 +50,24 @@ struct ButtonList0to_: View {
                     numberFormatter.maximumFractionDigits = 9
                 var previousValue = Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())!
                 var afterValue = Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!
-                if CalculatorDataSheet.isActCalculation == Operator.plus {
+                if CalculatorDataSheet.isActCalculation == InputString.plus {
                     CalculatorDataSheet.viewNum = (numberFormatter.string(for: previousValue + afterValue)!)
                 }
-                else if CalculatorDataSheet.isActCalculation == Operator.minus {
+                else if CalculatorDataSheet.isActCalculation == InputString.minus {
                     CalculatorDataSheet.viewNum = (numberFormatter.string(for: previousValue - afterValue)!)
                 }
-                else if CalculatorDataSheet.isActCalculation == Operator.divide {
+                else if CalculatorDataSheet.isActCalculation == InputString.divide {
                     CalculatorDataSheet.viewNum = (numberFormatter.string(for: previousValue / afterValue)!)
                 }
-                else if CalculatorDataSheet.isActCalculation == Operator.multiply {
+                else if CalculatorDataSheet.isActCalculation == InputString.multiply {
                     CalculatorDataSheet.viewNum = (numberFormatter.string(for: previousValue * afterValue)!)
                 }
                 CalculatorDataSheet.isCalculation = false
                 CalculatorDataSheet.isFirstCalculation = false
             }
             ){
-                Circle().frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10).foregroundColor(.orange).overlay(Image(systemName: "equal").foregroundColor(.white))
+                Circle()
+                    .foregroundColor(.orange).overlay(Image(systemName: "equal").foregroundColor(.white))
             }
         }
     }

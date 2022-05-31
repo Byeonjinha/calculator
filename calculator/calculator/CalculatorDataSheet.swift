@@ -26,7 +26,7 @@ final class CalculatorDataSheet: ObservableObject{
     @Published var isCalculation = false
     @Published var isFirstCalculation = false
     @Published var isAC = false
-    @Published var isActCalculation = Operator.equal
+    @Published var isActCalculation = InputString.equal
     @Published var viewNumC : [Character] = ["0"]
     @Published var viewNumC2 : [Character] = ["0"]
     func discrimination()-> String{
@@ -83,15 +83,15 @@ final class CalculatorDataSheet: ObservableObject{
             }
         }
     }
-    func calculation(ooperator: Operator) {
+    func calculation(ooperator: InputString) {
             if !isCalculation {  //연산 중이지 않을 때
                 isCalculation = true
                 isActCalculation = ooperator
                 viewNum2 = viewNum
-                isDivide = ooperator == Operator.divide ? true : false
-                isPlus = ooperator == Operator.plus ? true : false
-                isMinus = ooperator == Operator.minus ? true : false
-                isMultiply = ooperator == Operator.multiply ? true : false
+                isDivide = ooperator == InputString.divide ? true : false
+                isPlus = ooperator == InputString.plus ? true : false
+                isMinus = ooperator == InputString.minus ? true : false
+                isMultiply = ooperator == InputString.multiply ? true : false
             }
             else{  // 연산 중일 때
                 isCalculation = true
@@ -103,37 +103,32 @@ final class CalculatorDataSheet: ObservableObject{
                     var previousValue = Double(viewNum.components(separatedBy: [","]).joined())!
                     var afterValue = Double(viewNum2.components(separatedBy: [","]).joined())!
                     
-                    if isActCalculation == Operator.plus {
+                    if isActCalculation == InputString.plus {
                         viewNum = numberFormatter.string(for : previousValue + afterValue)!
                     }
-                    else if isActCalculation == Operator.minus {
+                    else if isActCalculation == InputString.minus {
                         viewNum = numberFormatter.string(for : previousValue - afterValue)!
                     }
-                    else if isActCalculation == Operator.divide {
+                    else if isActCalculation == InputString.divide {
                         viewNum = numberFormatter.string(for : previousValue / afterValue)!
                     }
-                    else if isActCalculation == Operator.multiply {
+                    else if isActCalculation == InputString.multiply {
                         viewNum = numberFormatter.string(for : previousValue * afterValue)!
                     }
                 }
                 viewNum2 = viewNum
-                isDivide = ooperator == Operator.divide ? true : false
-                isPlus = ooperator == Operator.plus ? true : false
-                isMinus = ooperator == Operator.minus ? true : false
-                isMultiply = ooperator == Operator.multiply ? true : false
+                isDivide = ooperator == InputString.divide ? true : false
+                isPlus = ooperator == InputString.plus ? true : false
+                isMinus = ooperator == InputString.minus ? true : false
+                isMultiply = ooperator == InputString.multiply ? true : false
                 isFirstCalculation = false
             }
     }
     
   
 }
-enum Operator {
-    case equal
-    case plus
-    case divide
-    case minus
-    case multiply
-}
+
+
 
 enum InputString: Int {
     case zero = 0
@@ -146,6 +141,11 @@ enum InputString: Int {
     case seven
     case eight
     case nine
+    case equal
+    case plus
+    case divide
+    case minus
+    case multiply
 }
 
 

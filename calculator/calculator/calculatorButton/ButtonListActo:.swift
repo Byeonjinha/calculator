@@ -11,10 +11,10 @@ struct ButtonListActo_: View {
     @EnvironmentObject var CalculatorDataSheet: CalculatorDataSheet
     
     var body: some View {
-        HStack{
+        HStack(spacing:10){
             Button(action:{
                 CalculatorDataSheet.isCalculation = false
-                CalculatorDataSheet.isActCalculation = Operator.equal
+                CalculatorDataSheet.isActCalculation = InputString.equal
                 CalculatorDataSheet.isDivide  = false
                 CalculatorDataSheet.isPlus = false
                 CalculatorDataSheet.isMinus = false
@@ -26,12 +26,13 @@ struct ButtonListActo_: View {
             }
             ){
                 Circle()
-                    .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
                     .foregroundColor(.indigo)
                     .overlay( CalculatorDataSheet.isAC ?
                         Text("C")
+                            .font(Font.custom("Noteworthy", size: 30, relativeTo: .title))
                             .foregroundColor(.white) :
                         Text("AC")
+                            .font(Font.custom("Noteworthy", size: 30, relativeTo: .title))
                             .foregroundColor(.white))
             }
             Button(action:{
@@ -55,13 +56,19 @@ struct ButtonListActo_: View {
             }
             ){
                 Circle()
-                    .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
                     .foregroundColor(.indigo)
                     .overlay(Image(systemName: "plus.forwardslash.minus")
                         .foregroundColor(.white))
             }
             Button(action:{
-                if !CalculatorDataSheet.isCalculation { // 연산 중이 아니면
+                if CalculatorDataSheet.isCalculation { // 연산 중이 아니면
+                    if CalculatorDataSheet.viewNum2 != "0"{
+                        let numberFormatter = NumberFormatter()
+                            numberFormatter.numberStyle = .decimal
+                            numberFormatter.maximumFractionDigits = 9
+                        CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())! / 100)!)
+                    }
+                else{
                     if CalculatorDataSheet.viewNum != "0"{
                         let numberFormatter = NumberFormatter()
                             numberFormatter.numberStyle = .decimal
@@ -69,38 +76,23 @@ struct ButtonListActo_: View {
                         CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! / 100)!)
                     }
                 }
-                else{
-                    if CalculatorDataSheet.viewNum2 != "0"{
-                        let numberFormatter = NumberFormatter()
-                            numberFormatter.numberStyle = .decimal
-                            numberFormatter.maximumFractionDigits = 9
-                        CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())! / 100)!)
-                    }
                 }
             }
             ){
                 Circle()
-                    .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
                     .foregroundColor(.indigo)
                     .overlay(Image(systemName:"percent")
                         .foregroundColor(.white))
             }
             Button(action:{
-                CalculatorDataSheet.calculation(ooperator: Operator.divide)
+                CalculatorDataSheet.calculation(ooperator: InputString.divide)
             }
             ){
                 Circle()
-                    .frame( width: UIScreen.main.bounds.size.width /  5, height : UIScreen.main.bounds.size.height / 10)
                     .foregroundColor( CalculatorDataSheet.isDivide ?  .white : .orange )
                     .overlay(Image(systemName: "divide")
                         .foregroundColor(CalculatorDataSheet.isDivide ?  .orange : .white))
             }
         }
-    }
-}
-
-struct ButtonListActo__Previews: PreviewProvider {
-    static var previews: some View {
-        ButtonListActo_()
     }
 }
