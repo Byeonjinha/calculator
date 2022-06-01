@@ -3,7 +3,6 @@
 //  memoApp (iOS)
 //
 //  Created by Byeon jinha on 2022/04/30.
-//
 
 import Foundation
 
@@ -46,25 +45,24 @@ final class CalculatorDataSheet: ObservableObject{
     }
     func numberPad (inputNum: InputString) {
         discrimination()
-        if isCalculation{
-            if !isFirstCalculation {  // 첫 연산 일 때
+        if isCalculation {
+            if isFirstCalculation {  // 첫 연산 일 때
+                guard viewNum2 == "0" else {
+                    let numberFormatter = NumberFormatter()
+                        numberFormatter.numberStyle = .decimal
+                        numberFormatter.maximumFractionDigits = 9
+                    viewNum2 = (numberFormatter.string(for: Double(viewNum2.components(separatedBy: [","]).joined() + String(inputNum.rawValue)))!)
+                    return
+                }
+                viewNum2 = String(inputNum.rawValue)
+            }
+            else {   //첫 연산이 아닐 때
                 isFirstCalculation = true // 다음은 첫 연산이 아니라고 명시
                 viewNum2 = String(inputNum.rawValue)
                 isDivide = false
                 isPlus = false
                 isMinus = false
                 isMultiply = false
-            }
-            else {   //첫 연산이 아닐 때
-                if viewNum2 == "0"{
-                    viewNum2 = String(inputNum.rawValue)
-                }
-                else{
-                    let numberFormatter = NumberFormatter()
-                        numberFormatter.numberStyle = .decimal
-                        numberFormatter.maximumFractionDigits = 9
-                    viewNum2 = (numberFormatter.string(for: Double(viewNum2.components(separatedBy: [","]).joined() + String(inputNum.rawValue)))!)
-                }
             }
         }
         else {  //연산 중 일 때
@@ -84,16 +82,8 @@ final class CalculatorDataSheet: ObservableObject{
         }
     }
     func calculation(ooperator: InputString) {
-            if !isCalculation {  //연산 중이지 않을 때
-                isCalculation = true
-                isActCalculation = ooperator
-                viewNum2 = viewNum
-                isDivide = ooperator == InputString.divide ? true : false
-                isPlus = ooperator == InputString.plus ? true : false
-                isMinus = ooperator == InputString.minus ? true : false
-                isMultiply = ooperator == InputString.multiply ? true : false
-            }
-            else{  // 연산 중일 때
+            if isCalculation {  //연산 중이지 않을 때
+                
                 isCalculation = true
                 let numberFormatter = NumberFormatter()
                     numberFormatter.numberStyle = .decimal
@@ -123,12 +113,17 @@ final class CalculatorDataSheet: ObservableObject{
                 isMultiply = ooperator == InputString.multiply ? true : false
                 isFirstCalculation = false
             }
+            else{  // 연산 중일 때
+                isCalculation = true
+                isActCalculation = ooperator
+                viewNum2 = viewNum
+                isDivide = ooperator == InputString.divide ? true : false
+                isPlus = ooperator == InputString.plus ? true : false
+                isMinus = ooperator == InputString.minus ? true : false
+                isMultiply = ooperator == InputString.multiply ? true : false
+            }
     }
-    
-  
 }
-
-
 
 enum InputString: Int {
     case zero = 0

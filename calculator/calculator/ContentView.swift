@@ -11,15 +11,19 @@ struct ContentView: View {
     var body: some View {
         ZStack{
         Rectangle()
-            VStack{
-            
-                CalculatedPage()
-                ButtonListActo_()
-                ButtonList7to_()
-                ButtonList4to_()
-                ButtonList1to_()
-                ButtonList0to_()
+            ZStack{
+                Color.black
+                .edgesIgnoringSafeArea(.all)
+                VStack{
                 
+                    CalculatedPage()
+                    ButtonListActo_()
+                    ButtonList7to_()
+                    ButtonList4to_()
+                    ButtonList1to_()
+                    ButtonList0to_()
+                    
+                }
             }
         }
     }
