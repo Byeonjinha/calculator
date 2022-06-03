@@ -13,7 +13,7 @@ struct CalculatedPage: View {
     var body: some View {
         VStack(){
             HStack{
-                Text(CalculatorDataSheet.isCalculation ?  CalculatorDataSheet.viewNum2: CalculatorDataSheet.viewNum)
+                Text(CalculatorDataSheet.isCalculation ?  CalculatorDataSheet.afterViewNum: CalculatorDataSheet.afterViewNum)
                     .font(Font.custom("Noteworthy", size: 60, relativeTo: .title))
                     .foregroundColor(.white)
                     .padding()

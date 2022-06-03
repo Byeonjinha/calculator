@@ -7,14 +7,14 @@
 import Foundation
 
 final class CalculatorDataSheet: ObservableObject{
-    @Published var viewNum = "0" {
+    @Published var previousViewNum = "0" {
            didSet {
-               viewNumC = Array(viewNum)
+               viewNumC = Array(afterViewNum)
            }
        }
-    @Published var viewNum2 = "0" {
+    @Published var afterViewNum = "0" {
          didSet {
-             viewNumC2 = Array(viewNum2)
+             viewNumC2 = Array(previousViewNum)
          }
      }
     
@@ -47,18 +47,18 @@ final class CalculatorDataSheet: ObservableObject{
         discrimination()
         if isCalculation {
             if isFirstCalculation {  // 첫 연산 일 때
-                guard viewNum2 == "0" else {
+                guard previousViewNum == "0" else {
                     let numberFormatter = NumberFormatter()
                         numberFormatter.numberStyle = .decimal
                         numberFormatter.maximumFractionDigits = 9
-                    viewNum2 = (numberFormatter.string(for: Double(viewNum2.components(separatedBy: [","]).joined() + String(inputNum.rawValue)))!)
+                    previousViewNum = (numberFormatter.string(for: Double(previousViewNum.components(separatedBy: [","]).joined() + String(inputNum.rawValue)))!)
                     return
                 }
-                viewNum2 = String(inputNum.rawValue)
+                previousViewNum = String(inputNum.rawValue)
             }
             else {   //첫 연산이 아닐 때
                 isFirstCalculation = true // 다음은 첫 연산이 아니라고 명시
-                viewNum2 = String(inputNum.rawValue)
+                previousViewNum = String(inputNum.rawValue)
                 isDivide = false
                 isPlus = false
                 isMinus = false
@@ -69,15 +69,15 @@ final class CalculatorDataSheet: ObservableObject{
             // 연산 중이 아닐 때
             isDivide = false
             isAC = true
-            if viewNum == "0"{
+            if afterViewNum == "0"{
                 isDivide = false
-                viewNum = String(inputNum.rawValue)
+                afterViewNum = String(inputNum.rawValue)
             }
             else{
                 let numberFormatter = NumberFormatter()
                     numberFormatter.numberStyle = .decimal
                     numberFormatter.maximumFractionDigits = 9
-                viewNum = (numberFormatter.string(for: Double(viewNum.components(separatedBy: [","]).joined() + String(inputNum.rawValue)))!)
+                afterViewNum = (numberFormatter.string(for: Double(afterViewNum.components(separatedBy: [","]).joined() + String(inputNum.rawValue)))!)
             }
         }
     }
@@ -90,23 +90,23 @@ final class CalculatorDataSheet: ObservableObject{
                     numberFormatter.maximumFractionDigits = 9
                 if isCalculation && isActCalculation == ooperator {
                 }else {
-                    var previousValue = Double(viewNum.components(separatedBy: [","]).joined())!
-                    var afterValue = Double(viewNum2.components(separatedBy: [","]).joined())!
+                    var previousValue = Double(afterViewNum.components(separatedBy: [","]).joined())!
+                    var afterValue = Double(previousViewNum.components(separatedBy: [","]).joined())!
                     
                     if isActCalculation == InputString.plus {
-                        viewNum = numberFormatter.string(for : previousValue + afterValue)!
+                        afterViewNum = numberFormatter.string(for : previousValue + afterValue)!
                     }
                     else if isActCalculation == InputString.minus {
-                        viewNum = numberFormatter.string(for : previousValue - afterValue)!
+                        afterViewNum = numberFormatter.string(for : previousValue - afterValue)!
                     }
                     else if isActCalculation == InputString.divide {
-                        viewNum = numberFormatter.string(for : previousValue / afterValue)!
+                        afterViewNum = numberFormatter.string(for : previousValue / afterValue)!
                     }
                     else if isActCalculation == InputString.multiply {
-                        viewNum = numberFormatter.string(for : previousValue * afterValue)!
+                        afterViewNum = numberFormatter.string(for : previousValue * afterValue)!
                     }
                 }
-                viewNum2 = viewNum
+                previousViewNum = afterViewNum
                 isDivide = ooperator == InputString.divide ? true : false
                 isPlus = ooperator == InputString.plus ? true : false
                 isMinus = ooperator == InputString.minus ? true : false
@@ -116,7 +116,7 @@ final class CalculatorDataSheet: ObservableObject{
             else{  // 연산 중일 때
                 isCalculation = true
                 isActCalculation = ooperator
-                viewNum2 = viewNum
+                previousViewNum = afterViewNum
                 isDivide = ooperator == InputString.divide ? true : false
                 isPlus = ooperator == InputString.plus ? true : false
                 isMinus = ooperator == InputString.minus ? true : false

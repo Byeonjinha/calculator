@@ -29,12 +29,12 @@ struct ButtonList0to_: View {
                     CalculatorDataSheet.isAC = true
                     if !CalculatorDataSheet.isCalculation { // 연산 중이 아니면
                         if !CalculatorDataSheet.viewNumC.contains(".") { // . 을 포함하고 있지 않으면
-                        CalculatorDataSheet.viewNum += "."
+                        CalculatorDataSheet.afterViewNum += "."
                         }
                     }
                     else {
                         if !CalculatorDataSheet.viewNumC2.contains(".") {
-                        CalculatorDataSheet.viewNum2 += "."
+                        CalculatorDataSheet.afterViewNum += "."
                         }
                     }
                 }){
@@ -49,19 +49,19 @@ struct ButtonList0to_: View {
                     let numberFormatter = NumberFormatter()
                         numberFormatter.numberStyle = .decimal
                         numberFormatter.maximumFractionDigits = 9
-                    var previousValue = Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())!
-                    var afterValue = Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())!
+                    var previousValue = Double(CalculatorDataSheet.afterViewNum.components(separatedBy: [","]).joined())!
+                    var afterValue = Double(CalculatorDataSheet.afterViewNum.components(separatedBy: [","]).joined())!
                     if CalculatorDataSheet.isActCalculation == InputString.plus {
-                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: previousValue + afterValue)!)
+                        CalculatorDataSheet.afterViewNum = (numberFormatter.string(for: previousValue + afterValue)!)
                     }
                     else if CalculatorDataSheet.isActCalculation == InputString.minus {
-                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: previousValue - afterValue)!)
+                        CalculatorDataSheet.afterViewNum = (numberFormatter.string(for: previousValue - afterValue)!)
                     }
                     else if CalculatorDataSheet.isActCalculation == InputString.divide {
-                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: previousValue / afterValue)!)
+                        CalculatorDataSheet.afterViewNum = (numberFormatter.string(for: previousValue / afterValue)!)
                     }
                     else if CalculatorDataSheet.isActCalculation == InputString.multiply {
-                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: previousValue * afterValue)!)
+                        CalculatorDataSheet.afterViewNum = (numberFormatter.string(for: previousValue * afterValue)!)
                     }
                     CalculatorDataSheet.isCalculation = false
                     CalculatorDataSheet.isFirstCalculation = false

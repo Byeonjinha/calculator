@@ -20,9 +20,9 @@ struct ButtonListActo_: View {
                 CalculatorDataSheet.isMinus = false
                 CalculatorDataSheet.isMultiply  = false
                 CalculatorDataSheet.isAC = false
-                CalculatorDataSheet.viewNum = "0"
+                CalculatorDataSheet.afterViewNum = "0"
                 CalculatorDataSheet.isFirstCalculation = false
-                CalculatorDataSheet.viewNum2 = "0"
+                CalculatorDataSheet.previousViewNum = "0"
             }
             ){
                 Circle()
@@ -40,16 +40,16 @@ struct ButtonListActo_: View {
                     numberFormatter.numberStyle = .decimal
                     numberFormatter.maximumFractionDigits = 9
                 if !CalculatorDataSheet.isCalculation { // 연산 중이 아니면
-                    CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! * -1)!)
+                    CalculatorDataSheet.afterViewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.afterViewNum.components(separatedBy: [","]).joined())! * -1)!)
                 }
                 else {
                     if !CalculatorDataSheet.isFirstCalculation {
                         CalculatorDataSheet.isFirstCalculation = true
-                        CalculatorDataSheet.viewNum2 = "-0"
+                        CalculatorDataSheet.previousViewNum = "-0"
                     
                     }
                     else{
-                        CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())! * -1)!)
+                        CalculatorDataSheet.previousViewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.previousViewNum.components(separatedBy: [","]).joined())! * -1)!)
                     }
                   
                 }
@@ -62,18 +62,18 @@ struct ButtonListActo_: View {
             }
             Button(action:{
                 if CalculatorDataSheet.isCalculation { // 연산 중이 아니면
-                    if CalculatorDataSheet.viewNum2 != "0"{
+                    if CalculatorDataSheet.previousViewNum != "0"{
                         let numberFormatter = NumberFormatter()
                             numberFormatter.numberStyle = .decimal
                             numberFormatter.maximumFractionDigits = 9
-                        CalculatorDataSheet.viewNum2 = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum2.components(separatedBy: [","]).joined())! / 100)!)
+                        CalculatorDataSheet.previousViewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.previousViewNum.components(separatedBy: [","]).joined())! / 100)!)
                     }
                 else{
-                    if CalculatorDataSheet.viewNum != "0"{
+                    if CalculatorDataSheet.afterViewNum != "0"{
                         let numberFormatter = NumberFormatter()
                             numberFormatter.numberStyle = .decimal
                             numberFormatter.maximumFractionDigits = 9
-                        CalculatorDataSheet.viewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.viewNum.components(separatedBy: [","]).joined())! / 100)!)
+                        CalculatorDataSheet.afterViewNum = (numberFormatter.string(for: Double(CalculatorDataSheet.afterViewNum.components(separatedBy: [","]).joined())! / 100)!)
                     }
                 }
                 }
